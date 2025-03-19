@@ -121,6 +121,41 @@ def parse_layer_information(all_text):
     return output
 
 
+def table_1_info(row, header, extracted_data):
+    #Extract information from the first table of the document.
+    if header == "media":
+        all_text = parse_media_alt_text(row.cells[1].text.strip())
+        vals = parse_media_url(row.cells[1].text.strip().split("\n")[0])
+        
+        if header not in extracted_data:
+            extracted_data[header] = []
+
+        extracted_data[header].append({'main_media_image': check_value_string_length(vals)})
+        for idx, val in enumerate(all_text):
+            extracted_data[header].append({next(iter(val.keys())):val[next(iter(val.keys()))]})
+
+    elif header == 'tags':
+        all_text = parse_tag_information(row.cells[1].text.strip())
+        if header not in extracted_data:
+            extracted_data[header] = []
+
+        for idx, val in enumerate(all_text):
+            extracted_data[header].append({next(iter(val.keys())):val[next(iter(val.keys()))]})
+    elif header == 'layers':
+        all_text = parse_layer_information(row.cells[1].text.strip())
+
+        for i in range(len(all_text)):
+                
+            if header not in extracted_data:
+                extracted_data[f'{header}'] = []
+
+            extracted_data[f'{header}'].append({f'Layer{i}':all_text[i]})
+    else:
+        vals = row.cells[1].text.strip().split("\n")[0]
+        extracted_data[header] = check_value_string_length(vals)
+
+    return extracted_data
+
 def check_value_string_length(vals):
     #If string is empty, then replace the value with 
     return vals if len(vals) >=1 else "Data not provided"
@@ -129,49 +164,18 @@ def check_value_string_length(vals):
 def extract_table_info_from_docx(docx_path):
     # Read the Word document
     doc = Document(docx_path)
-    extracted_data = {}
+    table_0 = {}
     
     # Process lists (bulleted or numbered)
-    for table in doc.tables:
+    for iTable,table in enumerate(doc.tables):
         for iRow,row in enumerate(table.rows):
             header = row.cells[0].text.strip().lower().split("\n")[0]
             assert len(header) != 0, "Header is empty, need to check the template document and update it to include all headers"
-            print(f'Index {iRow} is header {header}')
-            if iRow == 5:
-                break
+            
+            if iTable == 0:
+                table_0 = table_1_info(row, header, table_0)
+            # print(f'Index {iRow} is header {header}')
 
-            if header == "media":
-                all_text = parse_media_alt_text(row.cells[1].text.strip())
-                vals = parse_media_url(row.cells[1].text.strip().split("\n")[0])
-                
-                if header not in extracted_data:
-                    extracted_data[header] = []
-
-                extracted_data[header].append({'main_media_image': check_value_string_length(vals)})
-                for idx, val in enumerate(all_text):
-                    extracted_data[header].append({next(iter(val.keys())):val[next(iter(val.keys()))]})
-
-            elif header == 'tags':
-                all_text = parse_tag_information(row.cells[1].text.strip())
-                if header not in extracted_data:
-                    extracted_data[header] = []
-
-                for idx, val in enumerate(all_text):
-                    extracted_data[header].append({next(iter(val.keys())):val[next(iter(val.keys()))]})
-            elif header == 'layers':
-                all_text = parse_layer_information(row.cells[1].text.strip())
-
-                for i in range(len(all_text)):
-                        
-                    if header not in extracted_data:
-                        extracted_data[f'{header}'] = []
-
-                    extracted_data[f'{header}'].append({f'Layer{i}':all_text[i]})
-
-
-            else:
-                vals = row.cells[1].text.strip().split("\n")[0]
-                extracted_data[header] = check_value_string_length(vals)
 
     return "".join(content)
 
