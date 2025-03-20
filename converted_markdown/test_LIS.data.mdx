@@ -1,0 +1,317 @@
+---
+id: lis-alaska-nrt
+name: Land Information System - Alaska
+description: State of Alaska vegetation and hydrological information produced by NASA’s
+  Short-term Prediction and Transition Center – Land Information System (SPoRT-LIS).
+media:
+  src: ::file ./media/lis-alaska-nrt-cover.jpg
+  alt: Medenhall Glacier Outlook, Juneau, Alaska
+  author:
+    name: Figure by Mike
+    url: 
+      https://stock.adobe.com/images/medenhall-glacier-outlook-juneau-alaska/138501742?prev_url=detail
+taxonomy:
+  - name: Topics
+    values:
+      - Agriculture
+      - Climate
+      - Drought
+      - Evapotranspiration
+      - Hydrology
+      - Water Resources
+  - name: Source
+    values:
+      - NASA
+infoDescription: |2-
+      ::markdown 
+          - Temporal Extent: 12/01/2021 - 12/31/2021
+          - Temporal Resolution: Daily
+          - Spatial Extent: Alaska
+          - Spatial Resolution: 0.03° x 0.03°
+          - Data Units: Percentage (%)
+          - Data Type: Research
+          - Data Latency: Daily
+      
+layers:
+  - id: alaska_relative_soil_moisture_10cm
+    stacCol: lis_ak_rsm_10cm
+    stacApiEndpoint: https://dev.openveda.cloud/api/stac
+    name: 'Relative Soil Moisture (0-10cm), Updated Daily '
+    type: raster
+    description: Relative soil moisture (RSM) is a ratio of the volumetric soil moisture
+      between the wilting and saturation points for a given soil type.
+    initialDatetime: newest
+    projection:
+      id: equirectangular
+    zoomExtent:
+      - 0
+      - 20
+    legend:
+      unit:
+        label: '% percentage'
+      type: gradient
+      min: 0
+      max: 100
+      stops:
+        - rgb(139,100,89)
+        - rgb(180,139,129)
+        - rgb(225,190,180)
+        - rgb(165,0,0)
+        - rgb(225,19,0)
+        - rgb(255,50,0)
+        - rgb(255,96,0)
+        - rgb(255,160,0)
+        - rgb(255,191,60)
+        - rgb(255,231,120)
+        - rgb(149,245,139)
+        - rgb(79,240,79)
+        - rgb(29,180,29)
+        - rgb(19,100,209)
+        - rgb(40,129,240)
+        - rgb(79,165,245)
+        - rgb(149,209,250)
+        - rgb(160,139,255)
+        - rgb(111,96,219)
+        - rgb(60,40,180)
+    info:
+      source: NASA
+      spatialExtent: Alaska
+      temporalResolution: Daily
+      unit: Percentage (%)
+    media:
+      src: ::file <INSERT MANUALLY>
+      alt: <INSERT MANUALLY>
+  - id: alaska_relative_soil_moisture_40cm
+    stacCol: lis_ak_rsm_40cm
+    stacApiEndpoint: https://dev.openveda.cloud/api/stac
+    name: 'Relative Soil Moisture (0-40cm), Updated Daily  '
+    type: raster
+    description: Relative soil moisture (RSM) is a ratio of the volumetric soil moisture
+      between the wilting and saturation points for a given soil type.
+    initialDatetime: newest
+    projection:
+      id: equirectangular
+    zoomExtent:
+      - 0
+      - 20
+    legend:
+      unit:
+        label: '% percentage'
+      type: gradient
+      min: 0
+      max: 100
+      stops:
+        - rgb(139,100,89)
+        - rgb(180,139,129)
+        - rgb(225,190,180)
+        - rgb(165,0,0)
+        - rgb(225,19,0)
+        - rgb(255,50,0)
+        - rgb(255,96,0)
+        - rgb(255,160,0)
+        - rgb(255,191,60)
+        - rgb(255,231,120)
+        - rgb(149,245,139)
+        - rgb(79,240,79)
+        - rgb(29,180,29)
+        - rgb(19,100,209)
+        - rgb(40,129,240)
+        - rgb(79,165,245)
+        - rgb(149,209,250)
+        - rgb(160,139,255)
+        - rgb(111,96,219)
+        - rgb(60,40,180)
+    info:
+      source: NASA
+      spatialExtent: Alaska
+      temporalResolution: Daily
+      unit: Percentage (%)
+    media:
+      src: ::file <INSERT MANUALLY>
+      alt: <INSERT MANUALLY>
+  - id: alaska_gvf
+    stacCol: lis_ak_green_veg_fraction
+    stacApiEndpoint: https://dev.openveda.cloud/api/stac
+    name: 'Green Vegetation Fraction, Updated Daily '
+    type: raster
+    description: Green Vegetation Fraction (GVF) from VIIRS on Suomi NPP.
+    initialDatetime: newest
+    projection:
+      id: equirectangular
+    zoomExtent:
+      - 0
+      - 20
+    legend:
+      unit:
+        label: '% percentage'
+      type: gradient
+      min: 0
+      max: 100
+      stops:
+        - rgb(120,79,69)
+        - rgb(160,120,110)
+        - rgb(199,160,149)
+        - rgb(255,231,120)
+        - rgb(160,230,50)
+        - rgb(180,250,170)
+        - rgb(120,245,115)
+        - rgb(55,209,60)
+        - rgb(29,180,29)
+        - rgb(14,160,14)
+    info:
+      source: NASA
+      spatialExtent: Alaska
+      temporalResolution: Daily
+      unit: Percentage (%)
+    media:
+      src: ::file <INSERT MANUALLY>
+      alt: <INSERT MANUALLY>
+  - id: alaska_snow_depth
+    stacCol: lis_ak_snow_depth
+    stacApiEndpoint: https://dev.openveda.cloud/api/stac
+    name: 'Snow Depth, Updated Daily  '
+    type: raster
+    description: Snow depth for the state of Alaska
+    initialDatetime: newest
+    projection:
+      id: equirectangular
+    zoomExtent:
+      - 0
+      - 20
+    legend: {}
+    info:
+      source: NASA
+      spatialExtent: Alaska
+      temporalResolution: Daily
+      unit: Percentage (%)
+    media:
+      src: ::file <INSERT MANUALLY>
+      alt: <INSERT MANUALLY>
+  - id: alaska_gvf
+    stacCol: lis_ak_green_veg_fraction
+    stacApiEndpoint: https://dev.openveda.cloud/api/stac
+    name: 'Green Vegetation Fraction, Updated Daily '
+    type: raster
+    description: Green Vegetation Fraction (GVF) from VIIRS on Suomi NPP.
+    initialDatetime: newest
+    projection:
+      id: equirectangular
+    zoomExtent:
+      - 0
+      - 20
+    legend:
+      unit:
+        label: '% percentage'
+      type: gradient
+      min: 0
+      max: 100
+      stops:
+        - rgb(120,79,69)
+        - rgb(160,120,110)
+        - rgb(199,160,149)
+        - rgb(255,231,120)
+        - rgb(160,230,50)
+        - rgb(180,250,170)
+        - rgb(120,245,115)
+        - rgb(55,209,60)
+        - rgb(29,180,29)
+        - rgb(14,160,14)
+    info:
+      source: NASA
+      spatialExtent: Alaska
+      temporalResolution: Daily
+      unit: Percentage (%)
+    media:
+      src: ::file <INSERT MANUALLY>
+      alt: <INSERT MANUALLY>
+  - id: 'null  '
+    stacCol: 'null  '
+    stacApiEndpoint: https://dev.openveda.cloud/api/stac
+    name: 'null  '
+    type: raster
+    description: 'null  '
+    initialDatetime: newest
+    projection:
+      id: equirectangular
+    zoomExtent:
+      - 0
+      - 20
+    legend: {}
+    info:
+      source: NASA
+      spatialExtent: Alaska
+      temporalResolution: Daily
+      unit: Percentage (%)
+    media:
+      src: ::file <INSERT MANUALLY>
+      alt: <INSERT MANUALLY>
+
+---
+
+<Block>
+  <Prose>   
+    **Temporal Extent:** 12/01/2021 - 12/31/2021<br />
+    **Temporal Resolution:** Daily<br />
+    **Spatial Extent:** Alaska<br />
+    **Spatial Resolution:** 0.03° x 0.03°<br />
+    **Data Type:** Research<br />
+    **Data Latency:** Daily<br />
+  </Prose>
+</Block>
+
+<Block>
+  <Prose>
+    The NASA Short-term Prediction Research and Transition (SPoRT) Center runs the Alaska LIS (LIS-AK), a near-real-time version of the Noah land surface model at 0.03 degree resolution utilizing the NASA Land Information System (LIS) software.  The model input is the Global Data Assimilation (GDAS) forcing dataset, which is a near-real-time analysis of various observational data (ground, radar, satellite) consisting of surface meteorology (temperature, humidity, pressure, winds, precipitation) and downwelling long- and short-wave radiation.
+
+    Within LIS, the Noah Land Surface Model (LSM) is forced by this input data and produces analyses of soil temperature and moisture in 4 layers plus the snow state and fluxes of energy and water at the surface.  The Noah LSM accounts for snow accumulation based on the current LIS snow values in the continuous run and the forcing data from the atmospheric model.  Forcing variables influencing the snow depth in LIS include precipitation, air temperature, solar radiation.  Relevant modeled processes include compaction of snow, sublimation, and melting.
+  </Prose>
+</Block>
+
+<Block>
+  <Prose>
+    ## Source Data Product Citation
+    Kumar, S.V., C.D. Peters-Lidard, Y. Tian, P.R. Houser, J. Geiger, S. Olden, L. Lighty, J.L. Eastman, B. Doty, P. Dirmeyer, J. Adams, K. Mitchell, E. F. Wood, and J. Sheffield. (2006). Land Information System - An interoperable framework for high resolution land surface modeling. Environ. Modeling & Software, 21, 1402-1415, doi:10.1016/j.envsoft.2005.07.00
+
+    NASA Land Information System model configuration and information can be found in this [peer-reviewed article](doi:10.1016/j.envsoft.2005.07.00).
+  </Prose>
+</Block>
+
+<Block>
+  <Prose>
+    ## Version History
+    Version: 6.14(3.0.1)
+  </Prose>
+</Block>
+
+<Block>
+  <Prose>
+    ## Scientific Details
+    Relative soil moisture (RSM) provides a measure of the soil saturation without having to consider the variation in soil type.  RSM is analogous to relative humidity for air saturation.  Thus, RSM provides an easy measure of the level of saturation as opposed to a volumetric value where the differing amounts of space between soil particles causes inconsistent volumetric maxima per soil type.  The water in the soil can be in liquid or frozen form.
+
+    The near-surface layer responds quickly to heavy rainfall and indicates near-saturated conditions conducive to significant runoff and river flooding, while the deeper column layers represent longer-term water storage via infiltration from upper layers.  These values can also be used as fire risk indicators since vegetation water is dependent on soil moisture, and the near-surface layer can be a proxy for moisture in surface fuels (duff or litter).
+
+    Green Vegetation Fraction (GVF) is typically a static input to the land surface model based on monthly climatological values for a given location. The GVF particularly impacts soil moisture due to the accounting in the model of evapotranspiration by photosynthetically active vegetation.  Compared to the assumed climatological GVF, the use of the daily VIIRS GVF composite provides a more realistic impact to soil moisture, especially in extreme or atypical conditions.
+  </Prose>
+</Block>
+
+<Block>
+  <Prose>
+    ## Soil Moisture Limitations
+    The SPoRT-LIS is as good as the input forcing analyses, so occasional soil moisture artifacts may appear in the horizontal maps related to quality-control issues of the input datasets. These can be manifested with unusually low or high percentiles, especially along international borders, coastlines, and isolated dry “bulls-eyes” at rain gauge with quality issues.
+  </Prose>
+</Block>
+
+<Block>
+  <Prose>
+    ## Limitations of Use
+    NASA data and products are freely available to federal, state, public, non-profit and commercial users. This information can be experimental- or research-grade data products and may not be appropriate for operational use. These NASA data products, services, and the Disasters Mapping Portal are intended to aid decision makers and enhance situational awareness, but these data are not guaranteed to be consistently available or routinely updated. Please cite the information according to the direction provided in the metadata.
+  </Prose>
+</Block>
+
+<Block>
+  <Prose>
+    ## License
+    [Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/legalcode) (CC0 1.0)
+  </Prose>
+</Block>
+
