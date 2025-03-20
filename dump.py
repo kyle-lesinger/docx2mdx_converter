@@ -108,7 +108,10 @@ if __name__ == '__main__':
 
     #REQUIRED HEADER AND CONTENT INFORMATION
     for idx, header in enumerate(orderTOP):
-        prose.add_prose_to_final_mdx(outfile,prose.format_prose_block(prose_content,header))
+        try:
+            prose.add_prose_to_final_mdx(outfile,prose.format_prose_block(prose_content,header))
+        except KeyError:
+            pass
 
     #OPTIONAL HEADER AND CONTENT INFORMATION
     if len(table_optional) > 0:
