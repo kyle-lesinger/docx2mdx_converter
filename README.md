@@ -3,7 +3,7 @@
 ## **📌 Overview**
 This Python script converts structured **DOCX files** into **MDX (Markdown + JSX)** format, preserving **metadata, content structure, and color formatting** while ensuring **correct spacing, indentation, and color conversions**.
 
-This is specific for NASA VEDA information. Use file test_LIS.docx as the template and then fill in the appropriate information for each section.
+This is specific for NASA VEDA information. Use file template/test_LIS.docx as the template and then fill in the appropriate information for each section.
 
 This currently should only be run with a single landing page collection. For example, Land Information System - Alaska will have four different layers. This script will support an infinite number of layers if the tables are added correctly. This set of scripts is still a work in progress depending on your use case and future adjustments will be made.
 
