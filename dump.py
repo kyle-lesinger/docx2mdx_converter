@@ -123,7 +123,5 @@ if __name__ == '__main__':
     for idx, header in enumerate(orderBOTTOM):
         prose.add_prose_to_final_mdx(outfile,prose.format_prose_block(prose_content,header))
 
-    # output['structuredContent'] = generate_mdx_content_headers(table_1)
-
-    
-    # utils.clean_mdx_file(outfile)
+    # utils.debug_mdx_file(outfile)
+    utils.clean_mdx_file(outfile)

@@ -42,11 +42,11 @@ python dump.py /path/to/input.docx rgb_or_hex_string
 ```
 Example:
 ```bash
-python convert.py "template/test_LIS.docx" "rgb"
+python dump.py "template/test_LIS.docx" "rgb"
 ```
 or
 ```bash
-python convert.py "template/test_LIS.docx" "hex"
+python dump.py "template/test_LIS.docx" "hex"
 ```
 
 This **automatically:**

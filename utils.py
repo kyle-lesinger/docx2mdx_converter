@@ -93,12 +93,25 @@ def clean_mdx_file(mdx_file_path):
     with open(mdx_file_path, "r", encoding="utf-8") as file:
         content = file.read()
 
-    content = content.replace("|2", "|")  # Remove unwanted "|2"
+    # Debug: Print lines containing "|2-" before replacement
+    problematic_lines = [line for line in content.split("\n") if "|2-" in line]
+    if problematic_lines:
+        print("\n[DEBUG] Found occurrences of '|2-' before replacement:")
+        for line in problematic_lines:
+            print(line)
+
+    # Ensure ALL "|X-" variations are replaced with "|"
+    content = re.sub(r"\|\d+-", "|", content)
+
+    # Debug: Check if "|2-" still exists after replacement
+    if "|2-" in content:
+        print("[ERROR] '|2-' was NOT fully removed!")
 
     with open(mdx_file_path, "w", encoding="utf-8") as file:
         file.write(content)
-    
-    return f"File {mdx_file_path} processed successfully."
+
+    print(f"File {mdx_file_path} processed successfully.")
+    return f"File {mdx_file_path} cleaned successfully."
 
 def save_mdx_file(outfile, output_data):
     """
@@ -120,3 +133,22 @@ def save_mdx_file(outfile, output_data):
     return 0
 
 
+def debug_mdx_file(mdx_file_path):
+    """
+    Reads the file and prints its content to debug the presence of '|2-' or other anomalies.
+    """
+    with open(mdx_file_path, "r", encoding="utf-8") as file:
+        content = file.readlines()  # Read all lines
+
+    print("\n[DEBUG] FULL FILE CONTENT (showing raw formatting):")
+    for i, line in enumerate(content, start=1):
+        print(f"{i}: {repr(line)}")  # Show raw representation including spaces and escape sequences
+
+    print("\n[DEBUG] Searching for '|2-' occurrences:")
+    problematic_lines = [line for line in content if "|2-" in line]
+
+    if problematic_lines:
+        for line in problematic_lines:
+            print(f"Found: {repr(line)}")
+    else:
+        print("No '|2-' found. The issue might be elsewhere.")
