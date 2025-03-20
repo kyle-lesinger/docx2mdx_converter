@@ -44,6 +44,11 @@ Example:
 ```bash
 python convert.py "template/test_LIS.docx" "rgb"
 ```
+or
+```bash
+python convert.py "template/test_LIS.docx" "hex"
+```
+
 This **automatically:**
 - Parses the DOCX file
 - Extracts metadata
