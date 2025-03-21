@@ -6,7 +6,6 @@ import markdown
 import sys
 import re
 import yaml
-print(sys.executable)
 
 
 def read_document(docx_path):
@@ -93,6 +92,7 @@ def parse_layer_information(all_text):
     color_stops = re.findall(r'\[([^\]]+)\]', all_text, re.IGNORECASE)
     data_format = re.findall(r'Data format: (.*?)\n', all_text, re.IGNORECASE)
     projection = re.findall(r'Projection: (.*?)\n', all_text, re.IGNORECASE)
+    legend_type = re.findall(r'Legend type: (.*?)\n', all_text, re.IGNORECASE)
     legend_min = re.findall(r'Legend minimum: (.*?)\n', all_text, re.IGNORECASE)
     legend_max = re.findall(r'Legend maximum: (.*?)\n', all_text, re.IGNORECASE)
     legend_type = re.findall(r'Legend type: (.*?)\n', all_text, re.IGNORECASE)
@@ -108,8 +108,8 @@ def parse_layer_information(all_text):
     num_layers = len(layer_name)
 
     #This can allow for the selection of specific information into the .mdx file without adding everything
-    out_names = ['layer_name', 'stacCol', 'layer_id', 'layer_description', 'units', 'color_ramp_description', 'color_stops', 'data_format','projection','legend_min','legend_max','legend_type']
-    out_data = [layer_name, stacCol, layer_id, layer_description, unit, color_ramp_description, final_color_groups, data_format, projection, legend_min, legend_max, legend_type]
+    out_names = ['layer_name', 'stacCol', 'layer_id', 'layer_description', 'units', 'color_ramp_description', 'color_stops', 'data_format','projection','legend_minimum','legend_maximum','legend_type',]
+    out_data = [layer_name, stacCol, layer_id, layer_description, unit, color_ramp_description, final_color_groups, data_format, projection, legend_min, legend_max, legend_type,]
 
     output = []
     for i in range(num_layers):
