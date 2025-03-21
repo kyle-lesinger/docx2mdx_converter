@@ -130,6 +130,9 @@ def construct_non_prose_section(table_0, table_1, table_2, content, hex_or_rgb):
         try:
             layer_data = table_0["layers"][i][f"Layer{i}"]  # Extract specific layer dictionary
             subset = table_0["layers"][i][f'Layer{i}']
+
+            # print(subset.get(f"legend_maximum{i}"))
+
             output["layers"].append({
                 "id": subset.get(f"layer_id{i}"),
                 "stacCol": subset.get(f"stacCol{i}"),
@@ -143,8 +146,8 @@ def construct_non_prose_section(table_0, table_1, table_2, content, hex_or_rgb):
                 "legend": {
                     "unit": {"label": subset.get(f"units{i}")},
                     "type": subset.get(f"legend_type{i}"),
-                    "min": subset.get(f"legend_minimum{i}"),
-                    "max": subset.get(f"legend_maximum{i}"),
+                    "min": float(subset.get(f"legend_minimum{i}")) if subset.get(f"legend_type{i}") == 'gradient' else '',
+                    "max": float(subset.get(f"legend_maximum{i}")) if subset.get(f"legend_type{i}") == 'gradient' else '',
                     "stops": [f"rgb({','.join(map(str, utils.color_converter(stop)))})" if hex_or_rgb=='rgb' else stop for stop in subset.get(f'color_stops{i}', [])]
                 } if subset.get(f'color_stops{i}') else {},  # Handle empty color_stops case
                 "info": {
