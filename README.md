@@ -191,20 +191,13 @@ layers:
 
 ---
 
-## **🔄 Future Enhancements**
-🚀 **Add support for additional metadata fields**  
-🚀 **Improve handling of malformed DOCX tables**  
-🚀 **Support batch processing of multiple DOCX files**  
-
----
-
 ## **📜 License**
 This project is **open-source** under the **MIT License**.
 
 ---
 
 ## **💡 Author**
-Developed by **[Your Name]**, with expertise in **Python automation & data processing**.
+Developed by NASA VEDA.
 
 ---
 
