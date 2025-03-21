@@ -37,7 +37,7 @@ layers:
     stacCol: lis_ak_rsm_10cm
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
     name: 'Relative Soil Moisture (0-10cm), Updated Daily '
-    type: raster
+    type: arc
     description: Relative soil moisture (RSM) is a ratio of the volumetric soil moisture
       between the wilting and saturation points for a given soil type.
     initialDatetime: newest
@@ -50,8 +50,8 @@ layers:
       unit:
         label: '% percentage'
       type: gradient
-      min: 0
-      max: 100
+      min:
+      max:
       stops:
         - rgb(139,100,89)
         - rgb(180,139,129)
@@ -85,7 +85,7 @@ layers:
     stacCol: lis_ak_rsm_40cm
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
     name: 'Relative Soil Moisture (0-40cm), Updated Daily  '
-    type: raster
+    type: arc
     description: Relative soil moisture (RSM) is a ratio of the volumetric soil moisture
       between the wilting and saturation points for a given soil type.
     initialDatetime: newest
@@ -98,8 +98,8 @@ layers:
       unit:
         label: '% percentage'
       type: gradient
-      min: 0
-      max: 100
+      min:
+      max:
       stops:
         - rgb(139,100,89)
         - rgb(180,139,129)
@@ -133,7 +133,7 @@ layers:
     stacCol: lis_ak_green_veg_fraction
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
     name: 'Green Vegetation Fraction, Updated Daily '
-    type: raster
+    type: arc
     description: Green Vegetation Fraction (GVF) from VIIRS on Suomi NPP.
     initialDatetime: newest
     projection:
@@ -145,8 +145,8 @@ layers:
       unit:
         label: '% percentage'
       type: gradient
-      min: 0
-      max: 100
+      min:
+      max:
       stops:
         - rgb(120,79,69)
         - rgb(160,120,110)
@@ -170,7 +170,7 @@ layers:
     stacCol: lis_ak_snow_depth
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
     name: 'Snow Depth, Updated Daily  '
-    type: raster
+    type: arc
     description: Snow depth for the state of Alaska
     initialDatetime: newest
     projection:
@@ -191,20 +191,20 @@ layers:
     stacCol: lis_ak_green_veg_fraction
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
     name: 'Green Vegetation Fraction, Updated Daily '
-    type: raster
+    type:
     description: Green Vegetation Fraction (GVF) from VIIRS on Suomi NPP.
     initialDatetime: newest
     projection:
-      id: equirectangular
+      id:
     zoomExtent:
       - 0
       - 20
     legend:
       unit:
         label: '% percentage'
-      type: gradient
-      min: 0
-      max: 100
+      type:
+      min:
+      max:
       stops:
         - rgb(120,79,69)
         - rgb(160,120,110)
@@ -216,27 +216,6 @@ layers:
         - rgb(55,209,60)
         - rgb(29,180,29)
         - rgb(14,160,14)
-    info:
-      source: NASA
-      spatialExtent: Alaska
-      temporalResolution: Daily
-      unit: Percentage (%)
-    media:
-      src: ::file <INSERT MANUALLY>
-      alt: <INSERT MANUALLY>
-  - id: 'null  '
-    stacCol: 'null  '
-    stacApiEndpoint: https://dev.openveda.cloud/api/stac
-    name: 'null  '
-    type: raster
-    description: 'null  '
-    initialDatetime: newest
-    projection:
-      id: equirectangular
-    zoomExtent:
-      - 0
-      - 20
-    legend: {}
     info:
       source: NASA
       spatialExtent: Alaska
