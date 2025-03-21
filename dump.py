@@ -30,29 +30,29 @@ if __name__ == '__main__':
     #Build non prose section according to .mdx shcema
     output = prose.construct_non_prose_section(table_0, table_1, table_optional, prose_content, hex_or_rgb)
 
-    #Save file because appending wasn't working very well
+    # #Save file because appending wasn't working very well
     outfile = utils.convert_docx_to_mdx_path(docx_path)
     utils.save_mdx_file(outfile, output)
 
-    #Append to the saved .data.mdx file for each of the prose section
+    # #Append to the saved .data.mdx file for each of the prose section
     prose.add_prose_to_final_mdx(outfile,prose.generate_mdx_content_headers(table_1))
 
-    #REQUIRED HEADER AND CONTENT INFORMATION
+    # #REQUIRED HEADER AND CONTENT INFORMATION
     for idx, header in enumerate(orderTOP):
         try:
             prose.add_prose_to_final_mdx(outfile,prose.format_prose_block(prose_content,header))
         except KeyError:
             pass
 
-    #OPTIONAL HEADER AND CONTENT INFORMATION
+    # #OPTIONAL HEADER AND CONTENT INFORMATION
     if len(table_optional) > 0:
         for k,v in table_optional.items():
             key_ = list(table_optional[k][0].keys())[0]
             prose.add_prose_to_final_mdx(outfile,prose.format_prose_block(table_optional[k][0],key_))
 
-    #REQUIRED ENDING INFORMATION
+    # #REQUIRED ENDING INFORMATION
     for idx, header in enumerate(orderBOTTOM):
         prose.add_prose_to_final_mdx(outfile,prose.format_prose_block(prose_content,header))
 
-    # utils.debug_mdx_file(outfile)
+    utils.debug_mdx_file(outfile)
     utils.clean_mdx_file(outfile)

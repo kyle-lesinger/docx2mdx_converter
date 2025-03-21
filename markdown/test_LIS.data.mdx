@@ -46,6 +46,19 @@ layers:
     zoomExtent:
       - 0
       - 20
+    sourceParams:
+      colormap_name: bwr
+      rescale:
+        - 0.0
+        - 100.0
+      resampling: bilinear
+    compare:
+      datasetId: alaska_relative_soil_moisture_10cm
+      layerId: alaska_relative_soil_moisture_10cm
+      mapLabel: |
+        ::js ({ dateFns, datetime, compareDatetime }) => {
+        return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
+        }
     legend:
       unit:
         label: '% percentage'
@@ -57,22 +70,6 @@ layers:
         - rgb(180,139,129)
         - rgb(225,190,180)
         - rgb(165,0,0)
-        - rgb(225,19,0)
-        - rgb(255,50,0)
-        - rgb(255,96,0)
-        - rgb(255,160,0)
-        - rgb(255,191,60)
-        - rgb(255,231,120)
-        - rgb(149,245,139)
-        - rgb(79,240,79)
-        - rgb(29,180,29)
-        - rgb(19,100,209)
-        - rgb(40,129,240)
-        - rgb(79,165,245)
-        - rgb(149,209,250)
-        - rgb(160,139,255)
-        - rgb(111,96,219)
-        - rgb(60,40,180)
     info:
       source: NASA
       spatialExtent: Alaska
@@ -94,6 +91,19 @@ layers:
     zoomExtent:
       - 0
       - 20
+    sourceParams:
+      colormap_name: bwr
+      rescale:
+        - 0.0
+        - 100.0
+      resampling: bilinear
+    compare:
+      datasetId: alaska_relative_soil_moisture_40cm
+      layerId: alaska_relative_soil_moisture_40cm
+      mapLabel: |
+        ::js ({ dateFns, datetime, compareDatetime }) => {
+        return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
+        }
     legend:
       unit:
         label: '% percentage'
@@ -106,21 +116,6 @@ layers:
         - rgb(225,190,180)
         - rgb(165,0,0)
         - rgb(225,19,0)
-        - rgb(255,50,0)
-        - rgb(255,96,0)
-        - rgb(255,160,0)
-        - rgb(255,191,60)
-        - rgb(255,231,120)
-        - rgb(149,245,139)
-        - rgb(79,240,79)
-        - rgb(29,180,29)
-        - rgb(19,100,209)
-        - rgb(40,129,240)
-        - rgb(79,165,245)
-        - rgb(149,209,250)
-        - rgb(160,139,255)
-        - rgb(111,96,219)
-        - rgb(60,40,180)
     info:
       source: NASA
       spatialExtent: Alaska
@@ -141,6 +136,19 @@ layers:
     zoomExtent:
       - 0
       - 20
+    sourceParams:
+      colormap_name: bwr
+      rescale:
+        - 0.0
+        - 100.0
+      resampling: bilinear
+    compare:
+      datasetId: alaska_gvf
+      layerId: alaska_gvf
+      mapLabel: |
+        ::js ({ dateFns, datetime, compareDatetime }) => {
+        return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
+        }
     legend:
       unit:
         label: '% percentage'
@@ -152,12 +160,6 @@ layers:
         - rgb(160,120,110)
         - rgb(199,160,149)
         - rgb(255,231,120)
-        - rgb(160,230,50)
-        - rgb(180,250,170)
-        - rgb(120,245,115)
-        - rgb(55,209,60)
-        - rgb(29,180,29)
-        - rgb(14,160,14)
     info:
       source: NASA
       spatialExtent: Alaska
@@ -178,6 +180,19 @@ layers:
     zoomExtent:
       - 0
       - 20
+    sourceParams:
+      colormap_name: bwr
+      rescale:
+        - 0.0
+        - 100.0
+      resampling: bilinear
+    compare:
+      datasetId: alaska_snow_depth
+      layerId: alaska_snow_depth
+      mapLabel: |
+        ::js ({ dateFns, datetime, compareDatetime }) => {
+        return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
+        }
     legend: {}
     info:
       source: NASA
@@ -199,23 +214,29 @@ layers:
     zoomExtent:
       - 0
       - 20
+    sourceParams:
+      colormap_name: bwr
+      rescale:
+        - 0.0
+        - 100.0
+      resampling: bilinear
+    compare:
+      datasetId: alaska_gvf
+      layerId: alaska_gvf
+      mapLabel: |
+        ::js ({ dateFns, datetime, compareDatetime }) => {
+        return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
+        }
     legend:
       unit:
         label: '% percentage'
-      type:
-      min: ''
-      max: ''
+      type: gradient
+      min: 0.0
+      max: 100.0
       stops:
         - rgb(120,79,69)
         - rgb(160,120,110)
         - rgb(199,160,149)
-        - rgb(255,231,120)
-        - rgb(160,230,50)
-        - rgb(180,250,170)
-        - rgb(120,245,115)
-        - rgb(55,209,60)
-        - rgb(29,180,29)
-        - rgb(14,160,14)
     info:
       source: NASA
       spatialExtent: Alaska

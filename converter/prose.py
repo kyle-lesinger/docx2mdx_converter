@@ -2,6 +2,7 @@
 from ruamel.yaml.scalarstring import PreservedScalarString
 from ruamel.yaml import YAML
 from converter import utils
+from converter import verify
 import json
 
 def generate_mdx_content_headers(table_1):
@@ -131,7 +132,7 @@ def construct_non_prose_section(table_0, table_1, table_2, content, hex_or_rgb):
             layer_data = table_0["layers"][i][f"Layer{i}"]  # Extract specific layer dictionary
             subset = table_0["layers"][i][f'Layer{i}']
 
-            # print(subset.get(f"legend_maximum{i}"))
+            # print(subset.get(f"rescale_max{i}"))
 
             output["layers"].append({
                 "id": subset.get(f"layer_id{i}"),
@@ -141,8 +142,21 @@ def construct_non_prose_section(table_0, table_1, table_2, content, hex_or_rgb):
                 "type": subset.get(f"data_format{i}"),
                 "description": subset.get(f"layer_description{i}"),
                 "initialDatetime": "newest",
-                "projection": {"id": subset.get(f"projection{i}")},
+                "projection": {"id": verify.check_if_projection_is_valid(subset.get(f"projection{i}"))},
                 "zoomExtent": [0, 20],
+                "sourceParams": {
+                    "colormap_name": verify.check_if_colormap_is_valid(subset.get(f"colormap_name{i}")),
+                    "rescale": [float(subset.get(f"rescale_min{i}")),float(subset.get(f"rescale_max{i}"))],
+                    "resampling": subset.get(f"resampling{i}")                                           
+                },
+                "compare": {
+                    "datasetId": subset.get(f"layer_id{i}"), #We are setting the id as the file ID just for simplicity
+                    "layerId": subset.get(f"layer_id{i}"),
+                "mapLabel": PreservedScalarString("""\
+::js ({ dateFns, datetime, compareDatetime }) => {
+return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
+}""")
+                },
                 "legend": {
                     "unit": {"label": subset.get(f"units{i}")},
                     "type": subset.get(f"legend_type{i}"),
@@ -165,3 +179,4 @@ def construct_non_prose_section(table_0, table_1, table_2, content, hex_or_rgb):
         except IndexError:
             pass
     return output
+

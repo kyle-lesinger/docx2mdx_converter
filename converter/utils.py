@@ -66,13 +66,13 @@ def literal_presenter(dumper, data):
 
 def convert_docx_to_mdx_path(docx_path):
     """
-    Converts a .docx file path to a .data.mdx file path within the 'converted_markdown' directory.
+    Converts a .docx file path to a .data.mdx file path within the 'markdown' directory.
 
     Args:
         docx_path (str): The original .docx file path.
 
     Returns:
-        str: The modified path with .data.mdx extension in 'converted_markdown' directory.
+        str: The modified path with .data.mdx extension in 'markdown' directory.
     """
     out_dir = "markdown"
     os.makedirs(out_dir, exist_ok=True)
@@ -102,6 +102,8 @@ def clean_mdx_file(mdx_file_path):
 
     # Ensure ALL "|X-" variations are replaced with "|"
     content = re.sub(r"\|\d+-", "|", content)
+    content = re.sub(r"\|[^\S\r\n]*[^\s]*-", "|", content) #remove |- with only |
+
 
     # Debug: Check if "|2-" still exists after replacement
     if "|2-" in content:
@@ -110,8 +112,7 @@ def clean_mdx_file(mdx_file_path):
     with open(mdx_file_path, "w", encoding="utf-8") as file:
         file.write(content)
 
-    print(f"File {mdx_file_path} processed successfully.")
-    return f"File {mdx_file_path} cleaned successfully."
+    return print(f"\n✅  File {mdx_file_path} processed and cleaned successfully.")
 
 def save_mdx_file(outfile, output_data):
     """
