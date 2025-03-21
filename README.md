@@ -51,7 +51,7 @@ python dump.py "template/test_LIS.docx" "hex"
 This **automatically:**
 - Extracts DOCX table and prose information
 - Converts it into a **structured MDX file**
-- Saves it in the `converted_markdown/` directory
+- Saves into `markdown/` directory
 
 ---
 
@@ -82,7 +82,7 @@ def convert_docx_to_mdx_path(docx_path):
     Converts a .docx file path to .data.mdx in 'converted_markdown'.
     """
 ```
-- Creates `converted_markdown/` folder
+- Creates `markdown/` folder
 - **Renames `.docx` → `.data.mdx`**
 - Saves the formatted MDX file
 
