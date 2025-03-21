@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from ruamel.yaml.scalarstring import PreservedScalarString
 from ruamel.yaml import YAML
-from ruamel.yaml.scalarstring import PreservedScalarString
 import utils
 import json
 
