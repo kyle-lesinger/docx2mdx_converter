@@ -21,7 +21,6 @@ This currently should only be run with a **single landing page collection**. For
 Ensure you have **Python >=3.7** installed
 
 It is not necessary to create a new conda environment due to minimal libraries installed, but a new environment can be created with
-Run:
 ```bash
 conda create --name docx2mdx python=3.12
 conda activate docx2mdx
