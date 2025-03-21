@@ -192,9 +192,3 @@ layers:
 
 ## **📜 License**
 This project is **open-source** under the **MIT License**.
-
----
-
-## **✨ Conclusion**
-This script **seamlessly** converts **DOCX → MDX** while **preserving metadata, structure, and formatting**. 🚀  
-If you found this useful, feel free to **contribute** or **star** ⭐ the repo! 🚀
