@@ -19,9 +19,9 @@ def check_if_colormap_is_valid(colormap):
                     "spring","spring_r","summer","summer_r","tab10","tab10_r","tab20","tab20_r","tab20b","tab20b_r",
                     "tab20c","tab20c_r","terrain","terrain_r","twilight","twilight_r","twilight_shifted","twilight_shifted_r",
                     "viridis","viridis_r","winter","winter_r","wistia","wistia_r","ylgn","ylgn_r","ylgnbu","ylgnbu_r",
-                    "ylorbr","ylorbr_r","ylorrd","ylorrd_r",]
+                    "ylorbr","ylorbr_r","ylorrd","ylorrd_r",None]
     if colormap not in valid_colors:
-        raise ValueError(f"Invalid colormap: {colormap}. Please choose from the list of {valid_colors}.")
+        raise ValueError(f"Invalid colormap: {colormap}. \n\nPlease choose from the list of {valid_colors}.")
     return colormap
 
         
@@ -31,3 +31,6 @@ def check_if_projection_is_valid(projection):
     #Pulled from https://github.com/NASA-IMPACT/veda-config/blob/develop/admin/config.yml
     valid_projection = ["albers","equalEarth","equirectangular","lambertConformalConic","mercator","naturalEarth","winkelTripel",
                       "globe","polarNorth","polarSouth",]
+    if projection not in valid_projection:
+        raise ValueError(f"Invalid projection: {projection}. Please choose from the list of {valid_projection}.")
+    return projection   

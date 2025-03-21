@@ -88,7 +88,7 @@ def parse_layer_information(all_text):
     layer_id = re.findall(r'Layer id: (.*?)\n', all_text, re.IGNORECASE)
     layer_description = re.findall(r'Layer description: (.*?)\n', all_text, re.IGNORECASE)
     unit = re.findall(r'Units: (.*?)\n', all_text, re.IGNORECASE)
-    color_ramp_description = re.findall(r'Color ramp: (.*?)\n', all_text, re.IGNORECASE)
+    color_ramp_description = re.findall(r'Color ramp description: (.*?)\n', all_text, re.IGNORECASE)
     color_stops = re.findall(r'\[([^\]]+)\]', all_text, re.IGNORECASE)
     data_format = re.findall(r'Data format: (.*?)\n', all_text, re.IGNORECASE)
     projection = re.findall(r'Projection: (.*?)\n', all_text, re.IGNORECASE)
@@ -96,6 +96,10 @@ def parse_layer_information(all_text):
     legend_min = re.findall(r'Legend minimum: (.*?)\n', all_text, re.IGNORECASE)
     legend_max = re.findall(r'Legend maximum: (.*?)\n', all_text, re.IGNORECASE)
     legend_type = re.findall(r'Legend type: (.*?)\n', all_text, re.IGNORECASE)
+    colormap_name = re.findall(r'Colormap name: (.*?)\n', all_text, re.IGNORECASE)
+    resampling = re.findall(r'Resampling: (.*?)\n', all_text, re.IGNORECASE)
+    rescale_min = re.findall(r'Rescale minimum: (.*?)\n', all_text, re.IGNORECASE)
+    rescale_max = re.findall(r'Rescale maximum: (.*?)\n', all_text, re.IGNORECASE)
 
     # Clean up the groups (remove extra spaces and stray commas)
     final_color_groups = []
@@ -108,8 +112,14 @@ def parse_layer_information(all_text):
     num_layers = len(layer_name)
 
     #This can allow for the selection of specific information into the .mdx file without adding everything
-    out_names = ['layer_name', 'stacCol', 'layer_id', 'layer_description', 'units', 'color_ramp_description', 'color_stops', 'data_format','projection','legend_minimum','legend_maximum','legend_type',]
-    out_data = [layer_name, stacCol, layer_id, layer_description, unit, color_ramp_description, final_color_groups, data_format, projection, legend_min, legend_max, legend_type,]
+    out_names = ['layer_name', 'stacCol', 'layer_id', 'layer_description', 'units', 
+                 'color_ramp_description', 'color_stops', 'data_format','projection',
+                 'legend_minimum','legend_maximum','legend_type','colormap_name',
+                 'resampling','rescale_min','rescale_max']
+    out_data = [layer_name, stacCol, layer_id, layer_description, unit,
+                 color_ramp_description, final_color_groups, data_format, projection, 
+                 legend_min, legend_max, legend_type, colormap_name,
+                 resampling, rescale_min, rescale_max]
 
     output = []
     for i in range(num_layers):
