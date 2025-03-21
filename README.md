@@ -29,6 +29,7 @@ conda activate docx2mdx
 ### **🔹 Required Dependencies**
 Run:
 ```bash
+conda activate docx2mdx
 pip install -r requirements.txt
 ```
 ---
