@@ -49,9 +49,9 @@ def parse_media_url(vals):
 def parse_media_alt_text(all_text):
     #Return additional information including alt text, author, and original url
     output = []
-    match_alt_text = re.search(r'Image text \(alt\): (.*?)\n', all_text)
-    match_author_name = re.search(r'Author name: (.*?)\n',all_text)
-    match_author_URL = re.search(r'Author URL:\s*(.*)', all_text)
+    match_alt_text = re.search(r'Image text \(alt\): (.*?)\n', all_text, re.IGNORECASE)
+    match_author_name = re.search(r'Author name: (.*?)\n',all_text, re.IGNORECASE)
+    match_author_URL = re.search(r'Author URL:\s*(.*)', all_text, re.IGNORECASE)
 
     out_names = ['main_fig_alt_text', 'main_fig_author_name', 'main_fig_author_URL']
     out_data = [match_alt_text, match_author_name, match_author_URL]
@@ -67,9 +67,9 @@ def parse_media_alt_text(all_text):
 def parse_tag_information(all_text):
     #Return additional information including topics, data source, and match_prod_type
     output = []
-    match_topic_values = re.search(r'Topic: (.*?)\n', all_text)
-    match_source = re.search(r'Source: (.*?)\n',all_text)
-    match_prod_type = re.search(r'Product Type:\s*(.*)', all_text)
+    match_topic_values = re.search(r'Topic: (.*?)\n', all_text, re.IGNORECASE)
+    match_source = re.search(r'Source: (.*?)\n',all_text, re.IGNORECASE)
+    match_prod_type = re.search(r'Product Type:\s*(.*)', all_text, re.IGNORECASE)
 
     out_names = ['topic', 'source', 'product_type']
     out_data = [match_topic_values, match_source, match_prod_type]
@@ -84,32 +84,41 @@ def parse_tag_information(all_text):
 
 def parse_layer_information(all_text):
     #Return additional information including alt text, author, and original url
-    match_layer_names = re.findall(r'Layer name: (.*?)\n', all_text)
-    match_stacCol = re.findall(r'stacCol: (.*?)\n',all_text)
-    match_layer_ids = re.findall(r'Layer id: (.*?)\n', all_text)
-    match_layer_description = re.findall(r'Layer description: (.*?)\n', all_text)
-    match_units = re.findall(r'Units: (.*?)\n', all_text)
-    match_color_ramp_description = re.findall(r'Color ramp: (.*?)\n', all_text)
-    match_color_stops = re.findall(r'\[([^\]]+)\]', all_text)
+    layer_name = re.findall(r'Layer name: (.*?)\n', all_text, re.IGNORECASE)
+    stacCol = re.findall(r'stacCol: (.*?)\n',all_text, re.IGNORECASE)
+    layer_id = re.findall(r'Layer id: (.*?)\n', all_text, re.IGNORECASE)
+    layer_description = re.findall(r'Layer description: (.*?)\n', all_text, re.IGNORECASE)
+    unit = re.findall(r'Units: (.*?)\n', all_text, re.IGNORECASE)
+    color_ramp_description = re.findall(r'Color ramp: (.*?)\n', all_text, re.IGNORECASE)
+    color_stops = re.findall(r'\[([^\]]+)\]', all_text, re.IGNORECASE)
+    data_format = re.findall(r'Data format: (.*?)\n', all_text, re.IGNORECASE)
+    projection = re.findall(r'Projection: (.*?)\n', all_text, re.IGNORECASE)
+    legend_min = re.findall(r'Legend minimum: (.*?)\n', all_text, re.IGNORECASE)
+    legend_max = re.findall(r'Legend maximum: (.*?)\n', all_text, re.IGNORECASE)
+    legend_type = re.findall(r'Legend type: (.*?)\n', all_text, re.IGNORECASE)
 
     # Clean up the groups (remove extra spaces and stray commas)
     final_color_groups = []
-    for match in match_color_stops:
+    for match in color_stops:
         items = [item.strip(" '\n") for item in match.split(",")]
         # Remove empty items or stray commas
         items = [item for item in items if item]
         final_color_groups.append(items)
 
-    num_layers = len(match_layer_names)
+    num_layers = len(layer_name)
 
-    out_names = ['layer_name', 'stacCol', 'layer_id', 'layer_description', 'units', 'color_ramp_description', 'color_stops']
-    out_data = [match_layer_names, match_stacCol, match_layer_ids,match_layer_description, match_units, match_color_ramp_description, final_color_groups]
+    #This can allow for the selection of specific information into the .mdx file without adding everything
+    out_names = ['layer_name', 'stacCol', 'layer_id', 'layer_description', 'units', 'color_ramp_description', 'color_stops', 'data_format','projection','legend_min','legend_max','legend_type']
+    out_data = [layer_name, stacCol, layer_id, layer_description, unit, color_ramp_description, final_color_groups, data_format, projection, legend_min, legend_max, legend_type]
 
     output = []
     for i in range(num_layers):
         layer_data = {}  # Dictionary for this specific layer
         for idx, match_ in enumerate(zip(out_names, out_data)):
-            layer_data[f'{match_[0]}{i}'] = match_[1][i]
+            try:
+                layer_data[f'{match_[0]}{i}'] = match_[1][i]
+            except IndexError:
+                pass
         output.append(layer_data)
 
     return output
@@ -160,21 +169,32 @@ def parse_table_value_content(row,header,table_0,table_1):
     
     #Returns a list of items after Value:
     if header == 'content_source':
-        if re.findall(r'(?<=Value:\s)(.*)', all_text,)[0] == 'null':
+        if re.findall(r'(?<=Value:\s)(.*)', all_text, re.IGNORECASE)[0] == 'null':
             source_values = [item['source'] for item in table_0['tags'] if 'source' in item]
             table_1[header] = source_values
         else:
-            match_value_names = re.findall(r'(?<=Value:\s)(.*)', all_text,)
+            match_value_names = re.findall(r'(?<=Value:\s)(.*)', all_text, re.IGNORECASE)
             table_1[header] = match_value_names
     elif header == 'temporal_extent':
-        match_value_names = re.findall(r'Start:\s*(\d{2}/\d{2}/\d{4})|End:\s*(\d{2}/\d{2}/\d{4})', all_text)
+        match_value_names = re.findall(r'Start:\s*(\d{2}/\d{2}/\d{4})|End:\s*(\d{2}/\d{2}/\d{4})', all_text, re.IGNORECASE)
         # Extract values
         start_value = next((match[0] for match in match_value_names if match[0]), None)
         end_value = next((match[1] for match in match_value_names if match[1]), None)
         table_1['start_temporal_extent'] = start_value
         table_1['end_temporal_extent'] =end_value
+    elif header == 'legend_value_range':
+         pass
+        #This will add if all of the layers are identical, but that isn't always the case
+        #  match_value_names = re.findall(r"Min:\s*([\d.]+)\s*Max:\s*([\d.]+)\s*Type:\s*(\w+)", all_text)
+        #  min_value = next((match[0] for match in match_value_names if match[0]), None)
+        #  max_value = next((match[1] for match in match_value_names if match[1]), None)
+        #  legend_type = next((match[2] for match in match_value_names if match[2]), None)
+        #  table_1['legend_min'] = min_value
+        #  table_1['legend_max'] = max_value
+        #  table_1['legend_type'] = legend_type
     else:
-        match_value_names = re.findall(r'(?<=Value:\s)(.*)', all_text,)
+
+        match_value_names = re.findall(r'(?<=Value:\s)(.*)', all_text, re.IGNORECASE)
         table_1[header] = match_value_names
     return table_1
 
@@ -203,14 +223,19 @@ def extract_table_info_from_docx(doc):
     for iTable,table in enumerate(doc.tables):
         for iRow,row in enumerate(table.rows):
             header = row.cells[0].text.strip().lower().split("\n")[0]
-            assert len(header) != 0, "Header is empty, need to check the template document and update it to include all headers"
-            
-            if iTable == 0:
-                table_0 = table_0_info(row, header, table_0)
-            elif iTable == 1:
-                table_1 = parse_table_value_content(row,header,table_0,table_1)
-            elif iTable ==2:
-                table_2 = parse_additional_table_info(row, header, table_2)
+
+            # Skip empty rows and headers
+            if len(header) == 0 and len(row.cells[1].text.strip()) == 0:
+                continue
+            elif len(header) == 0:
+                assert len(header) != 0, "Header is empty, need to check the template document and update it to include all headers"
+            else:
+                if iTable == 0:
+                    table_0 = table_0_info(row, header, table_0)
+                elif iTable == 1:
+                    table_1 = parse_table_value_content(row,header,table_0,table_1)
+                elif iTable ==2:
+                    table_2 = parse_additional_table_info(row, header, table_2)
     return table_0, table_1, table_2
 
 
