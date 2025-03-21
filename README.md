@@ -18,18 +18,19 @@ This currently should only be run with a **single landing page collection**. For
 
 ## **📦 Installation**
 ### **🔹 Prerequisites**
-Ensure you have **Python 3.7+** installed.
+Ensure you have **Python > =3.7+** installed
+
+It is not necessary to create a new conda environment due to minimal libraries installed, but a new environment can be created with
+```bash
+conda create --name docx2mdx python=3.12
+conda activate docx2mdx
+```
 
 ### **🔹 Required Dependencies**
 Run:
 ```bash
 pip install -r requirements.txt
 ```
-OR install manually:
-```bash
-pip install ruamel.yaml
-```
-
 ---
 
 ## **📝 Usage**
