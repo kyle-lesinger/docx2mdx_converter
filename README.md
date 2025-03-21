@@ -49,33 +49,14 @@ python dump.py "template/test_LIS.docx" "hex"
 ```
 
 This **automatically:**
-- Parses the DOCX file
-- Extracts metadata
+- Extracts DOCX table and prose information
 - Converts it into a **structured MDX file**
 - Saves it in the `converted_markdown/` directory
 
 ---
 
-## **🛠️ Functionality Breakdown**
-### **🔹 1. YAML Processing**
-- **Extracts DOCX table contents**
-- Formats them into **YAML front matter**
-- Removes any YAML errors (e.g., `|2-`)
 
-🔹 **Function:** `get_yaml_instance()`
-
-```python
-def get_yaml_instance():
-    yaml = YAML()
-    yaml.indent(mapping=2, sequence=4, offset=2)
-    yaml.preserve_quotes = True
-    yaml.representer.add_representer(PreservedScalarString, literal_presenter)
-    return yaml
-```
-
----
-
-### **🔹 2. Color Conversion (Hex ↔ RGB)**
+### **🔹 1. Color Conversion (Hex ↔ RGB)**
 Automatically converts **colors between Hex and RGB** based on user preference.
 
 🔹 **Function:** `color_converter()`
@@ -91,7 +72,7 @@ def color_converter(color, hex_or_rgb="rgb"):
 
 ---
 
-### **🔹 3. Converting DOCX file to MDX**
+### **🔹 2. Converting DOCX file to MDX**
 Extracts **table data, metadata, and prose blocks** while preserving formatting.
 
 🔹 **Function:** `convert_docx_to_mdx_path()`
@@ -107,22 +88,8 @@ def convert_docx_to_mdx_path(docx_path):
 
 ---
 
-### **🔹 4. Cleaning MDX Formatting**
-Fixes YAML errors by removing artifacts like `|2-`
 
-🔹 **Function:** `clean_mdx_file()`
-```python
-def clean_mdx_file(mdx_file_path):
-    """
-    Removes unwanted artifacts from MDX file.
-    """
-```
-✅ **Fixes spacing issues**  
-✅ **Ensures MDX renders correctly**
-
----
-
-### **🔹 5. Adding Prose Blocks**
+### **🔹 3. Adding Prose Blocks**
 Dynamically appends prose sections without **overwriting existing content**.
 
 🔹 **Function:** `add_prose_to_final_mdx()`
