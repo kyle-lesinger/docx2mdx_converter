@@ -3,17 +3,15 @@
 ## **📌 Overview**
 This Python script converts structured **DOCX files** into **MDX (Markdown + JSX)** format, preserving **metadata, content structure, and color formatting** while ensuring **correct spacing, indentation, and color conversions**.
 
-This is specific for NASA VEDA information. Use file template/test_LIS.docx as the template and then fill in the appropriate information for each section.
+This is specific for NASA VEDA information. Use file template/test_LIS.docx as the template and then fill template/test_LIS.docx in the appropriate information for each section.
 
-This currently should only be run with a single landing page collection. For example, Land Information System - Alaska will have four different layers. This script will support an infinite number of layers if the tables are added correctly. This set of scripts is still a work in progress depending on your use case and future adjustments will be made.
+## **📌 Restrictions**
+This currently should only be run with a **single landing page collection**. For example, Land Information System - Alaska will have four different layers, but will be featured on [VEDA data catalog](https://www.earthdata.nasa.gov/dashboard/data-catalog) as a single item. This script will support an infinite number of layers (as long as the same formatting between layers is used). This set of scripts is still a work in progress depending on your use case and future adjustments will be made.
 
 ### **Features:**
 - ✅ **Extracts** metadata, structured tables, and formatted text from DOCX (use file test_LIS.docx for the proper format)
-- ✅ **Converts tables** into structured **YAML front matter**
 - ✅ **Handles multi-layered data** (e.g., having more than one input layer)
 - ✅ **Converts colors** between **Hex ↔ RGB** if needed
-- ✅ **Fixes YAML formatting issues** (removing unwanted artifacts like `|2-`)
-- ✅ **Preserves indentation** to ensure proper rendering
 - ✅ **Appends structured prose sections** dynamically
 
 ---
