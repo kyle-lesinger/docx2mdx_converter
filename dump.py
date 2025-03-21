@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-
-import parse as par
-import utils
-import prose
+from converter import parse as par
+from converter import utils
+from converter import prose
 import sys
 import os
 import yaml
@@ -11,7 +10,7 @@ from ruamel.yaml.scalarstring import PreservedScalarString
 import re
 
 #Testing data
-# docx_path = "test_LIS.docx" # Example filename for testing
+# docx_path = "template/test_LIS.docx" # Example filename for testing
 # hex_or_rgb = 'rgb'
 
 
