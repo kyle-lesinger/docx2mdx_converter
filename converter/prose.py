@@ -150,8 +150,8 @@ def construct_non_prose_section(table_0, table_1, table_2, content, hex_or_rgb):
                     "resampling": subset.get(f"resampling{i}")                                           
                 },
                 "compare": {
-                    "datasetId": subset.get(f"layer_id{i}"), #We are setting the id as the file ID just for simplicity
-                    "layerId": subset.get(f"layer_id{i}"),
+                    "datasetId": table_0["id"], #We are setting the id as the file ID just for simplicity
+                    "layerId": table_0["id"],
                 "mapLabel": PreservedScalarString("""\
 ::js ({ dateFns, datetime, compareDatetime }) => {
 return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
