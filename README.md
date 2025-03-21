@@ -1,4 +1,4 @@
-# **DOCX to MDX Converter**
+# **DOCX to MDX Converter for VEDA Datasets**
 
 ## **📌 Overview**
 This Python script converts structured **DOCX files** into **MDX (Markdown + JSX)** format, preserving **metadata, content structure, and color formatting** while ensuring **correct spacing, indentation, and color conversions**.
