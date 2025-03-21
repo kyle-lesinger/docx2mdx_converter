@@ -18,7 +18,7 @@ This currently should only be run with a **single landing page collection**. For
 
 ## **📦 Installation**
 ### **🔹 Prerequisites**
-Ensure you have **Python > =3.7+** installed
+Ensure you have **Python >=3.7** installed
 
 It is not necessary to create a new conda environment due to minimal libraries installed, but a new environment can be created with
 ```bash
