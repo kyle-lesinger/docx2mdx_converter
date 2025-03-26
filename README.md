@@ -26,7 +26,7 @@ conda env create -f setup/docx2mdx_env.yaml
 conda activate docx2mdx
 ```
 
-### **🔹 Required Dependencies** (information for simply downloading dependencies with no new conda environment)
+### **🔹 Required Dependencies** (no new conda environment)
 Run:
 ```bash
 pip install -r requirements.txt
