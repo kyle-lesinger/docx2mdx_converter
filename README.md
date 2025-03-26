@@ -19,9 +19,7 @@ This currently should only be run with a **single landing page collection**. For
 ---
 
 ## **📦 Installation**
-### **🔹 Prerequisites**
-Ensure you have **Python >=3.7** installed
-
+### **🔹 Install in new conda environment**
 It is not necessary to create a new conda environment due to minimal libraries installed, but a new environment can be created with
 ```bash
 conda env create -f setup/docx2mdx_env.yaml
@@ -29,6 +27,7 @@ conda activate docx2mdx
 ```
 
 ### **🔹 Required Dependencies** (no new conda environment)
+Ensure you have **Python >=3.7** installed
 Run:
 ```bash
 pip install -r requirements.txt
