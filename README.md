@@ -11,6 +11,8 @@ This is specific for NASA VEDA information. Use file ```template/test_LIS.docx``
 - ✅ **Converts colors** between **Hex ↔ RGB** if needed
 - ✅ **Appends structured prose sections** dynamically
 
+
+
 ## **📌 Restrictions**
 This currently should only be run with a **single landing page collection**. For example, Land Information System - Alaska in ```fill template/test_LIS.docx``` will have four different layers, but will be featured on [VEDA data catalog](https://www.earthdata.nasa.gov/dashboard/data-catalog/global-reanalysis-da) as a single item. In the previous link (for a different dataset), all of the information will be populated and when clicking [Explore Data](https://www.earthdata.nasa.gov/dashboard/exploration?search=global-reanalysis-da&datasets=%5B%5D&taxonomy=%7B%7D) each of the individual layers will be populated based on the information you add. This script will support an infinite number of layers (as long as the same formatting between layers is used). 
 
