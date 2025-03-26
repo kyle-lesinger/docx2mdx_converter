@@ -30,7 +30,7 @@ conda activate docx2mdx
 Ensure you have **Python >=3.7** installed
 Run:
 ```bash
-pip install -r requirements.txt
+pip install -r setup/requirements.txt
 ```
 ---
 
