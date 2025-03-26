@@ -3,10 +3,10 @@
 ## **📌 Overview**
 This Python script converts structured **DOCX files** into **MDX (Markdown + JSX)** format, preserving **metadata, content structure, and color formatting** while ensuring **correct spacing, indentation, and color conversions**.
 
-This is specific for NASA VEDA information. Use file template/test_LIS.docx as the template and then fill template/test_LIS.docx in the appropriate information for each section. 
+This is specific for NASA VEDA information. Use file ```template/test_LIS.docx``` as the template and then ```fill template/test_LIS.docx``` in the appropriate information for each section. 
 
 ## **📌 Restrictions**
-This currently should only be run with a **single landing page collection**. For example, Land Information System - Alaska will have four different layers, but will be featured on [VEDA data catalog](https://www.earthdata.nasa.gov/dashboard/data-catalog/global-reanalysis-da) as a single item. In the previous link (for a different dataset), all of the information will be populated and when clicking [Explore Data](https://www.earthdata.nasa.gov/dashboard/exploration?search=global-reanalysis-da&datasets=%5B%5D&taxonomy=%7B%7D) each of the individual layers will be populated based on the information you add. This script will support an infinite number of layers (as long as the same formatting between layers is used). 
+This currently should only be run with a **single landing page collection**. For example, Land Information System - Alaska in ```fill template/test_LIS.docx``` will have four different layers, but will be featured on [VEDA data catalog](https://www.earthdata.nasa.gov/dashboard/data-catalog/global-reanalysis-da) as a single item. In the previous link (for a different dataset), all of the information will be populated and when clicking [Explore Data](https://www.earthdata.nasa.gov/dashboard/exploration?search=global-reanalysis-da&datasets=%5B%5D&taxonomy=%7B%7D) each of the individual layers will be populated based on the information you add. This script will support an infinite number of layers (as long as the same formatting between layers is used). 
 
 ### **Features:**
 - ✅ **Extracts** metadata, structured tables, and formatted text from DOCX (use file test_LIS.docx for the proper format)
