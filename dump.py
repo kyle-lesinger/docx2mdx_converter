@@ -56,3 +56,4 @@ if __name__ == '__main__':
 
     utils.debug_mdx_file(outfile)
     utils.clean_mdx_file(outfile)
+    utils.remove_trailing_whitespace(outfile)

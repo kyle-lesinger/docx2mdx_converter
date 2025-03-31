@@ -112,7 +112,7 @@ def clean_mdx_file(mdx_file_path):
     with open(mdx_file_path, "w", encoding="utf-8") as file:
         file.write(content)
 
-    return print(f"\n✅  File {mdx_file_path} processed and cleaned successfully.")
+    return print(f"File {mdx_file_path} cleaned successfully.")
 
 def save_mdx_file(outfile, output_data):
     """
@@ -153,3 +153,16 @@ def debug_mdx_file(mdx_file_path):
             print(f"Found: {repr(line)}")
     else:
         print("No '|2-' found. The issue might be elsewhere.")
+
+
+def remove_trailing_whitespace(file_path):
+    print('Removing whitespaces after each line')
+    with open(file_path, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    cleaned_lines = [line.rstrip() + "\n" for line in lines]
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.writelines(cleaned_lines)
+
+    print(f"\n✅ {file_path} complete.")
