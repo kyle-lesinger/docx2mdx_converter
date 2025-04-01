@@ -17,7 +17,7 @@ import re
 #Set order of prose_blocks
 orderTOP = ['Introduction paragraph', 'Source Data Product Citation', 'Version History', 'Scientific Details']
 #Between orderTOP and orderBOTTOM, any optional prose blocks will be added automatically
-orderBOTTOM = ['Limitations of Use','License']
+orderBOTTOM = ['Disclaimer','Limitations of Use','License']
 
 
 
