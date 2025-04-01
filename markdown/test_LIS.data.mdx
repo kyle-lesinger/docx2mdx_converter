@@ -8,7 +8,7 @@ media:
   alt: Medenhall Glacier Outlook, Juneau, Alaska
   author:
     name: Figure by Mike
-    url: 
+    url:
       https://stock.adobe.com/images/medenhall-glacier-outlook-juneau-alaska/138501742?prev_url=detail
 taxonomy:
   - name: Topics
@@ -23,7 +23,7 @@ taxonomy:
     values:
       - NASA
 infoDescription: |
-      ::markdown 
+      ::markdown
           - Temporal Extent: 12/01/2021 - 12/31/2021
           - Temporal Resolution: Daily
           - Spatial Extent: Alaska
@@ -31,7 +31,7 @@ infoDescription: |
           - Data Units: Percentage (%)
           - Data Type: Research
           - Data Latency: Daily
-      
+
 layers:
   - id: alaska_relative_soil_moisture_10cm
     stacCol: lis_ak_rsm_10cm
@@ -249,7 +249,7 @@ layers:
 ---
 
 <Block>
-  <Prose>   
+  <Prose>
     **Temporal Extent:** 12/01/2021 - 12/31/2021<br />
     **Temporal Resolution:** Daily<br />
     **Spatial Extent:** Alaska<br />
@@ -291,6 +291,13 @@ layers:
   <Prose>
     ## Soil Moisture Limitations
     The SPoRT-LIS is as good as the input forcing analyses, so occasional soil moisture artifacts may appear in the horizontal maps related to quality-control issues of the input datasets. These can be manifested with unusually low or high percentiles, especially along international borders, coastlines, and isolated dry “bulls-eyes” at rain gauge with quality issues.
+  </Prose>
+</Block>
+
+<Block>
+  <Prose>
+    ## Disclaimer
+    All data provided in VEDA has been transformed from the original format (TIFF) into Cloud Optimized GeoTIFFs (COG). Careful quality checks are used to ensure data transformation has been performed correctly.
   </Prose>
 </Block>
 
