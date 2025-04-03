@@ -109,7 +109,8 @@ def construct_non_prose_section(table_0, table_1, table_2, content, hex_or_rgb):
         },
         "taxonomy": [
             {"name": "Topics", "values": table_0["tags"][0]["topic"].split(", ")},
-            {"name": "Source", "values": [table_0["tags"][1]["source"]]}
+            {"name": "Subtopics", "values": table_0["tags"][1]["subtopic"].split(", ")},
+            {"name": "Source", "values": [table_0["tags"][2]["source"]]}
         ],
         "infoDescription": PreservedScalarString(f"""\
     ::markdown 

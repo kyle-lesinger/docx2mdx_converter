@@ -67,11 +67,12 @@ def parse_tag_information(all_text):
     #Return additional information including topics, data source, and match_prod_type
     output = []
     match_topic_values = re.search(r'Topic: (.*?)\n', all_text, re.IGNORECASE)
+    match_subtopic_values = re.search(r'Subtopic: (.*?)\n', all_text, re.IGNORECASE)
     match_source = re.search(r'Source: (.*?)\n',all_text, re.IGNORECASE)
     match_prod_type = re.search(r'Product Type:\s*(.*)', all_text, re.IGNORECASE)
 
-    out_names = ['topic', 'source', 'product_type']
-    out_data = [match_topic_values, match_source, match_prod_type]
+    out_names = ['topic', 'subtopic', 'source', 'product_type']
+    out_data = [match_topic_values, match_subtopic_values, match_source, match_prod_type]
 
     for idx,match_ in enumerate(zip(out_names, out_data)):
         if match_[1]:
@@ -232,8 +233,9 @@ def extract_table_info_from_docx(doc):
     # Process lists (bulleted or numbered)
     for iTable,table in enumerate(doc.tables):
         for iRow,row in enumerate(table.rows):
+            
             header = row.cells[0].text.strip().lower().split("\n")[0]
-
+            
             # Skip empty rows and headers
             if len(header) == 0 and len(row.cells[1].text.strip()) == 0:
                 continue
