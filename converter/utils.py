@@ -31,24 +31,35 @@ def color_converter(color, hex_or_rgb="rgb"):
         str or tuple: Converted color in the requested format.
     """
     
-    # ✅ If input is already an RGB tuple, check if conversion is needed
+    # Case 1: Input is already an RGB tuple (e.g., (255, 0, 0)).
     if isinstance(color, tuple) and len(color) == 3 and all(isinstance(c, int) and 0 <= c <= 255 for c in color):
-        return color if hex_or_rgb == "rgb" else f"#{color[0]:02X}{color[1]:02X}{color[2]:02X}"
+        if hex_or_rgb == "rgb":
+            return color # Return as is if RGB is requested.
+        else:
+            return f"#{color[0]:02X}{color[1]:02X}{color[2]:02X}" # Convert to HEX.
 
-    # ✅ If input is an RGB string (e.g., "rgb(255, 0, 0)"), convert it to tuple
+    # Case 2: Input is an RGB string (e.g., "rgb(255, 0, 0)" or "rgb(255,0,0)").
+    # Regex captures three groups of 1-3 digits, allowing for optional spaces around commas.
     rgb_match = re.match(r"rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)", str(color))
     if rgb_match:
-        rgb_tuple = tuple(map(int, rgb_match.groups()))
-        return rgb_tuple if hex_or_rgb == "rgb" else f"#{rgb_tuple[0]:02X}{rgb_tuple[1]:02X}{rgb_tuple[2]:02X}"
+        rgb_tuple = tuple(map(int, rgb_match.groups())) # Convert captured groups to integers.
+        if hex_or_rgb == "rgb":
+            return rgb_tuple # Return as tuple if RGB is requested.
+        else:
+            return f"#{rgb_tuple[0]:02X}{rgb_tuple[1]:02X}{rgb_tuple[2]:02X}" # Convert to HEX.
 
-    # ✅ If input is HEX, process it
-    hex_color = str(color).lstrip("#").upper()  # Normalize case
-    if len(hex_color) == 6 and all(c in "0123456789ABCDEF" for c in hex_color):
-        # Convert HEX to RGB
-        rgb_tuple = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
-        return rgb_tuple if hex_or_rgb == "rgb" else f"#{hex_color}"  # Keep HEX if no conversion needed
+    # Case 3: Input is a HEX string (e.g., "#FF0000" or "FF0000").
+    hex_color_str = str(color).lstrip("#").upper()  # Remove '#' and convert to uppercase for consistent processing.
+    if len(hex_color_str) == 6 and all(c in "0123456789ABCDEF" for c in hex_color_str): # Validate hex format.
+        if hex_or_rgb == "hex":
+            return f"#{hex_color_str}" # Return normalized HEX if HEX is requested.
+        else:
+            # Convert HEX to RGB tuple.
+            rgb_tuple = tuple(int(hex_color_str[i:i+2], 16) for i in (0, 2, 4))
+            return rgb_tuple
 
-    raise ValueError("Invalid color format. Must be RGB (rgb(R,G,B)) or HEX (#RRGGBB)")
+    # If none of the above cases match, the format is invalid.
+    raise ValueError("Invalid color format. Must be RGB (rgb(R,G,B) or (R,G,B)) or HEX (#RRGGBB or RRGGBB)")
 
 
 def literal_presenter(dumper, data):
@@ -80,57 +91,20 @@ def convert_docx_to_mdx_path(docx_path):
     new_filename = re.sub(r"\.docx$", ".data.mdx", filename)  # Replace .docx with .data.mdx
     return os.path.join(out_dir, new_filename)
 
-def clean_mdx_file(mdx_file_path):
+def save_mdx_content(outfile, mdx_content_string):
     """
-    Cleans up erroneous text in an MDX file, replacing known issues.
-
-    Args:
-        mdx_file_path (str): Path to the MDX file to clean.
-
-    Returns:
-        str: Confirmation message.
-    """
-    with open(mdx_file_path, "r", encoding="utf-8") as file:
-        content = file.read()
-
-    # Debug: Print lines containing "|2-" before replacement
-    problematic_lines = [line for line in content.split("\n") if "|2-" in line]
-    if problematic_lines:
-        print("\n[DEBUG] Found occurrences of '|2-' before replacement:")
-        for line in problematic_lines:
-            print(line)
-
-    # Ensure ALL "|X-" variations are replaced with "|"
-    content = re.sub(r"\|\d+-", "|", content)
-    content = re.sub(r"\|[^\S\r\n]*[^\s]*-", "|", content) #remove |- with only |
-
-
-    # Debug: Check if "|2-" still exists after replacement
-    if "|2-" in content:
-        print("[ERROR] '|2-' was NOT fully removed!")
-
-    with open(mdx_file_path, "w", encoding="utf-8") as file:
-        file.write(content)
-
-    return print(f"File {mdx_file_path} cleaned successfully.")
-
-def save_mdx_file(outfile, output_data):
-    """
-    Saves YAML-structured data to an MDX file.
+    Saves the fully formed MDX content string to a file.
 
     Args:
         outfile (str): Output file path.
-        output_data (dict): Dictionary containing the YAML data.
+        mdx_content_string (str): The complete MDX content.
 
     Returns:
         int: 0 on success.
     """
-    yaml = get_yaml_instance()
     with open(outfile, "w", encoding="utf-8") as file:
         print(f"Writing file: {outfile}")
-        file.write("---\n")
-        yaml.dump(output_data, file)
-        file.write("\n---\n\n")
+        file.write(mdx_content_string)
     return 0
 
 
@@ -156,10 +130,12 @@ def debug_mdx_file(mdx_file_path):
 
 
 def remove_trailing_whitespace(file_path):
+    """Removes trailing whitespace from each line in the specified file."""
     print('Removing whitespaces after each line')
     with open(file_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
+    # Strip trailing whitespace from each line and ensure a newline character at the end.
     cleaned_lines = [line.rstrip() + "\n" for line in lines]
 
     with open(file_path, "w", encoding="utf-8") as f:

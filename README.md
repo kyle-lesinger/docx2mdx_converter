@@ -7,9 +7,10 @@ This is specific for NASA VEDA information. Use file ```template/test_LIS.docx``
 
 ### **Features:**
 - ✅ **Extracts** metadata, structured tables, and formatted text from DOCX (use file test_LIS.docx for the proper format)
-- ✅ **Handles multi-layered data** (e.g., having more than one input layer)
+- ✅ **Handles a dynamic number of layers** (e.g., supporting datasets with varying numbers of layers, not limited to a fixed count).
 - ✅ **Converts colors** between **Hex ↔ RGB** if needed
-- ✅ **Appends structured prose sections** dynamically
+- ✅ **Builds complete MDX content in memory** for efficient single-pass writing.
+- ✅ **Ensures clean YAML output** for frontmatter, preventing common formatting issues.
 
 
 
@@ -27,11 +28,13 @@ conda activate docx2mdx
 ```
 
 ### **🔹 Required Dependencies** (no new conda environment)
-Ensure you have **Python >=3.7** installed
+Ensure you have **Python >=3.7** installed.
+The primary dependencies are `python-docx` and `ruamel.yaml`.
 Run:
 ```bash
 pip install -r setup/requirements.txt
 ```
+The script uses minimal external libraries, so creating a dedicated Conda environment might not be strictly necessary, but it's good practice for reproducibility.
 ---
 
 ## **📝 Usage**
@@ -90,19 +93,8 @@ def convert_docx_to_mdx_path(docx_path):
 ---
 
 
-### **🔹 3. Adding Prose Blocks**
-Dynamically appends prose sections without **overwriting existing content**.
-
-🔹 **Function:** `add_prose_to_final_mdx()`
-```python
-def add_prose_to_final_mdx(outfile, prose_blocks):
-    """
-    Appends prose blocks while preserving spacing.
-    """
-```
-✅ **Adds new `<Block>` sections**  
-✅ **Maintains proper indentation**  
-✅ **Prevents formatting corruption**
+### **🔹 3. MDX Content Assembly**
+The script assembles the complete MDX content, including YAML frontmatter and all prose blocks, in memory before writing to the output file. This ensures correct structure and ordering.
 
 ---
 
