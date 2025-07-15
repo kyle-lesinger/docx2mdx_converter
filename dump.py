@@ -28,7 +28,7 @@ if __name__ == '__main__':
     #First accumulate the information from the docx file into different objects
     table_0, table_1, table_optional, prose_content = par.retrieve_all_docx_data(docx_path)
     #Build non prose section according to .mdx shcema
-    output = prose.construct_non_prose_section(table_0, table_1, table_optional, prose_content, hex_or_rgb)
+    output = prose.construct_non_prose_section(table_0, table_1, prose_content, hex_or_rgb)
 
     outfile = utils.convert_docx_to_mdx_path(docx_path)
 
