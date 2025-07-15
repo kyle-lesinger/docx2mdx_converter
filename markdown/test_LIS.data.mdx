@@ -24,8 +24,8 @@ taxonomy:
   - name: Source
     values:
       - NASA
-infoDescription: |
-      ::markdown
+infoDescription: |-
+  ::markdown
           - Temporal Extent: 12/01/2021 - 12/31/2021
           - Temporal Resolution: Daily
           - Spatial Extent: Alaska
@@ -33,45 +33,25 @@ infoDescription: |
           - Data Units: Percentage (%)
           - Data Type: Research
           - Data Latency: Daily
-
 layers:
   - id: alaska_relative_soil_moisture_10cm
     stacCol: lis_ak_rsm_10cm
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
-    name: 'Relative Soil Moisture (0-10cm), Updated Daily '
+    name: Relative Soil Moisture (0-10cm), Updated Daily
     type: arc
     description: Relative soil moisture (RSM) is a ratio of the volumetric soil moisture
       between the wilting and saturation points for a given soil type.
     initialDatetime: newest
-    projection:
-      id: equirectangular
     zoomExtent:
       - 0
       - 20
-    sourceParams:
-      colormap_name: bwr
-      rescale:
-        - 0.0
-        - 100.0
-      resampling: bilinear
     compare:
       datasetId: lis-alaska-nrt
-      layerId: lis-alaska-nrt
-      mapLabel: |
+      layerId: alaska_relative_soil_moisture_10cm
+      mapLabel: |-
         ::js ({ dateFns, datetime, compareDatetime }) => {
         return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
         }
-    legend:
-      unit:
-        label: '% percentage'
-      type: gradient
-      min: 0.0
-      max: 100.0
-      stops:
-        - rgb(139,100,89)
-        - rgb(180,139,129)
-        - rgb(225,190,180)
-        - rgb(165,0,0)
     info:
       source: NASA
       spatialExtent: Alaska
@@ -80,44 +60,43 @@ layers:
     media:
       src: ::file <INSERT MANUALLY>
       alt: <INSERT MANUALLY>
+    sourceParams:
+      colormap_name: bwr
+      resampling: bilinear
+      rescale:
+        - 0.0
+        - 100.0
+    legend:
+      unit:
+        label: '% percentage'
+      type: gradient
+      min: 0.0
+      max: 100.0
+      stops:
+        - '#8B6459'
+        - '#B48B81'
+        - '#E1BEB4'
+        - '#A50000'
+    projection:
+      id: equirectangular
   - id: alaska_relative_soil_moisture_40cm
     stacCol: lis_ak_rsm_40cm
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
-    name: 'Relative Soil Moisture (0-40cm), Updated Daily  '
+    name: Relative Soil Moisture (0-40cm), Updated Daily
     type: arc
     description: Relative soil moisture (RSM) is a ratio of the volumetric soil moisture
       between the wilting and saturation points for a given soil type.
     initialDatetime: newest
-    projection:
-      id: equirectangular
     zoomExtent:
       - 0
       - 20
-    sourceParams:
-      colormap_name: bwr
-      rescale:
-        - 0.0
-        - 100.0
-      resampling: bilinear
     compare:
       datasetId: lis-alaska-nrt
-      layerId: lis-alaska-nrt
-      mapLabel: |
+      layerId: alaska_relative_soil_moisture_40cm
+      mapLabel: |-
         ::js ({ dateFns, datetime, compareDatetime }) => {
         return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
         }
-    legend:
-      unit:
-        label: '% percentage'
-      type: gradient
-      min: 0.0
-      max: 100.0
-      stops:
-        - rgb(139,100,89)
-        - rgb(180,139,129)
-        - rgb(225,190,180)
-        - rgb(165,0,0)
-        - rgb(225,19,0)
     info:
       source: NASA
       spatialExtent: Alaska
@@ -126,42 +105,43 @@ layers:
     media:
       src: ::file <INSERT MANUALLY>
       alt: <INSERT MANUALLY>
+    sourceParams:
+      colormap_name: bwr
+      resampling: bilinear
+      rescale:
+        - 0.0
+        - 100.0
+    legend:
+      unit:
+        label: '% percentage'
+      type: gradient
+      min: 0.0
+      max: 100.0
+      stops:
+        - '#8B6459'
+        - '#B48B81'
+        - '#E1BEB4'
+        - '#A50000'
+        - '#E11300'
+    projection:
+      id: equirectangular
   - id: alaska_gvf
     stacCol: lis_ak_green_veg_fraction
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
-    name: 'Green Vegetation Fraction, Updated Daily '
+    name: Green Vegetation Fraction, Updated Daily
     type: arc
     description: Green Vegetation Fraction (GVF) from VIIRS on Suomi NPP.
     initialDatetime: newest
-    projection:
-      id: equirectangular
     zoomExtent:
       - 0
       - 20
-    sourceParams:
-      colormap_name: bwr
-      rescale:
-        - 0.0
-        - 100.0
-      resampling: bilinear
     compare:
       datasetId: lis-alaska-nrt
-      layerId: lis-alaska-nrt
-      mapLabel: |
+      layerId: alaska_gvf
+      mapLabel: |-
         ::js ({ dateFns, datetime, compareDatetime }) => {
         return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
         }
-    legend:
-      unit:
-        label: '% percentage'
-      type: gradient
-      min: 0.0
-      max: 100.0
-      stops:
-        - rgb(120,79,69)
-        - rgb(160,120,110)
-        - rgb(199,160,149)
-        - rgb(255,231,120)
     info:
       source: NASA
       spatialExtent: Alaska
@@ -170,32 +150,42 @@ layers:
     media:
       src: ::file <INSERT MANUALLY>
       alt: <INSERT MANUALLY>
+    sourceParams:
+      colormap_name: bwr
+      resampling: bilinear
+      rescale:
+        - 0.0
+        - 100.0
+    legend:
+      unit:
+        label: '% percentage'
+      type: gradient
+      min: 0.0
+      max: 100.0
+      stops:
+        - '#784F45'
+        - '#A0786E'
+        - '#C7A095'
+        - '#FFE778'
+    projection:
+      id: equirectangular
   - id: alaska_snow_depth
     stacCol: lis_ak_snow_depth
     stacApiEndpoint: https://dev.openveda.cloud/api/stac
-    name: 'Snow Depth, Updated Daily  '
+    name: Snow Depth, Updated Daily
     type: arc
     description: Snow depth for the state of Alaska
     initialDatetime: newest
-    projection:
-      id: equirectangular
     zoomExtent:
       - 0
       - 20
-    sourceParams:
-      colormap_name: bwr
-      rescale:
-        - 0.0
-        - 100.0
-      resampling: bilinear
     compare:
       datasetId: lis-alaska-nrt
-      layerId: lis-alaska-nrt
-      mapLabel: |
+      layerId: alaska_snow_depth
+      mapLabel: |-
         ::js ({ dateFns, datetime, compareDatetime }) => {
         return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
         }
-    legend: {}
     info:
       source: NASA
       spatialExtent: Alaska
@@ -204,31 +194,51 @@ layers:
     media:
       src: ::file <INSERT MANUALLY>
       alt: <INSERT MANUALLY>
-  - id: alaska_gvf
-    stacCol: lis_ak_green_veg_fraction
-    stacApiEndpoint: https://dev.openveda.cloud/api/stac
-    name: 'Green Vegetation Fraction, Updated Daily '
-    type: arc
-    description: Green Vegetation Fraction (GVF) from VIIRS on Suomi NPP.
-    initialDatetime: newest
-    projection:
-      id: equirectangular
-    zoomExtent:
-      - 0
-      - 20
     sourceParams:
       colormap_name: bwr
+      resampling: bilinear
       rescale:
         - 0.0
         - 100.0
-      resampling: bilinear
+    legend:
+      unit:
+        label: '% percentage'
+      type: gradient
+      min: 0.0
+      max: 100.0
+    projection:
+      id: equirectangular
+  - id: alaska_gvf
+    stacCol: lis_ak_green_veg_fraction
+    stacApiEndpoint: https://dev.openveda.cloud/api/stac
+    name: Green Vegetation Fraction, Updated Daily
+    type: arc
+    description: Green Vegetation Fraction (GVF) from VIIRS on Suomi NPP.
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
     compare:
       datasetId: lis-alaska-nrt
-      layerId: lis-alaska-nrt
-      mapLabel: |
+      layerId: alaska_gvf
+      mapLabel: |-
         ::js ({ dateFns, datetime, compareDatetime }) => {
         return `${dateFns.format(datetime, 'LLL yyyy')} VS ${dateFns.format(compareDatetime, 'LLL yyyy')}`;
         }
+    info:
+      source: NASA
+      spatialExtent: Alaska
+      temporalResolution: Daily
+      unit: Percentage (%)
+    media:
+      src: ::file <INSERT MANUALLY>
+      alt: <INSERT MANUALLY>
+    sourceParams:
+      colormap_name: bwr
+      resampling: bilinear
+      rescale:
+        - 0.0
+        - 100.0
     legend:
       unit:
         label: '% percentage'
@@ -236,18 +246,11 @@ layers:
       min: 0.0
       max: 100.0
       stops:
-        - rgb(120,79,69)
-        - rgb(160,120,110)
-        - rgb(199,160,149)
-    info:
-      source: NASA
-      spatialExtent: Alaska
-      temporalResolution: Daily
-      unit: Percentage (%)
-    media:
-      src: ::file <INSERT MANUALLY>
-      alt: <INSERT MANUALLY>
-
+        - '#784F45'
+        - '#A0786E'
+        - '#C7A095'
+    projection:
+      id: equirectangular
 ---
 
 <Block>
